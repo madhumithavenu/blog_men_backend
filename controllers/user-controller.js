@@ -13,4 +13,5 @@ const User = require("../model/User.js")
   }
   return res.status(200).json({ users });
 };
+
 module.exports = getAllUser;
