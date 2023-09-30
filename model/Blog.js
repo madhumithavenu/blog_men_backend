@@ -20,6 +20,7 @@ const blogSchema = new Schema({
         ref: "User",
         required: true,
     },
+
 });
 
 module.exports = mongoose.model("Blog", blogSchema);

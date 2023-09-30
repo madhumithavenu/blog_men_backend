@@ -14,7 +14,7 @@ const userSchema = new Schema({
     unique: true,
   },
   password: {
-    type: String,
+    type: mongoose.Types.ObjectId,
     required: true,
     minlength: 6,
   },
