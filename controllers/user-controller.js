@@ -1,7 +1,7 @@
 const User = require("../model/User.js")
 const bcrypt = require("bcryptjs");
 
-const getAllUser = async (req, res, next) => {
+module.exports.getAllUser = async (req, res, next) => {
     let users;
     try {
         users = await User.find();
@@ -14,9 +14,9 @@ const getAllUser = async (req, res, next) => {
     return res.status(200).json({ users });
 };
 
-module.exports = getAllUser;
 
-const signup = async (req, res, next) => {
+
+module.exports.signup = async (req, res, next) => {
     const { name, email, password } = req.body;
     let existingUser;
     try {
@@ -29,7 +29,7 @@ const signup = async (req, res, next) => {
             .status(400)
             .json({ message: "User Already Exists! Login Instead" });
     }
-    const hashedPassword = bcrypt.hashSync(password);
+    const hashedPassword = bcrypt.hashSync(password,6);
 
     const user = new User({
         name,
@@ -45,9 +45,9 @@ const signup = async (req, res, next) => {
     }
     return res.status(201).json({ user });
 };
-module.exports = signup;
+// module.exports = signup;
 
-const login = async (req, res, next) => {
+module.exports.login = async (req, res, next) => {
    const { email, password } = req.body;
    let existingUser;
    try {
@@ -67,4 +67,4 @@ const login = async (req, res, next) => {
      .status(200)
      .json({ message: "Login Successfull", user: existingUser });
  };
- module.exports = login;
+//  module.exports = login;
